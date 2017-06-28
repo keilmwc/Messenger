@@ -1,8 +1,10 @@
 /**
  * Created by KeilCarpenter on 28/06/2017.
  */
-import {Component, Input} from '@angular/core';
+import {Component, Input, Output} from '@angular/core';
 import { Message } from '../../models/message.model';
+import {EventListener} from "@angular/platform-browser/src/facade/browser";
+import {EventEmitter} from "@angular/common/src/facade/async";
 
 @Component({
     selector: 'app-message',
@@ -12,4 +14,11 @@ import { Message } from '../../models/message.model';
 
 export class MessageComponent{
     @Input() message: Message;
+    @Output() editClicked = new EventEmitter<string>();
+
+    constructor(){}
+
+    onEdit(){
+        this.editClicked.emit('event emitted');
+    }
 }
