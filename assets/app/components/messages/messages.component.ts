@@ -3,7 +3,6 @@
  */
 import {Component, Input, Output} from '@angular/core';
 import { Message } from '../../models/message.model';
-import {EventListener} from "@angular/platform-browser/src/facade/browser";
 import {EventEmitter} from "@angular/common/src/facade/async";
 
 @Component({

@@ -1,1 +1,3 @@
-<app-message [message]="message" (editClicked)="message.content = $event"></app-message>
+<app-message [message]="message"
+             *ngFor="let message of messages"
+             (editClicked)="message.content = $event"></app-message>
