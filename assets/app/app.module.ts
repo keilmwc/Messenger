@@ -12,6 +12,9 @@ import {MessagesComponent} from "./components/messages/messages.component";
 import {AuthenticationComponent} from "./components/auth/authentication.component";
 import {routing} from "./components/app/routes";
 import {HeaderComponent} from "./components/app/header.component";
+import {LogoutComponent} from "./components/auth/logout.component";
+import {SigninComponent} from "./components/auth/signin.component";
+import {SignupComponent} from "./components/auth/signup.component";
 
 @NgModule({
     declarations: [
@@ -21,7 +24,10 @@ import {HeaderComponent} from "./components/app/header.component";
         MessageListComponent,
         MessageInputComponent,
         AuthenticationComponent,
-        HeaderComponent
+        HeaderComponent,
+        LogoutComponent,
+        SigninComponent,
+        SignupComponent
 
     ],
     imports: [BrowserModule,
