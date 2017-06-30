@@ -4,6 +4,7 @@
 import {Component, Input, Output} from '@angular/core';
 import { Message } from '../../models/message.model';
 import {EventEmitter} from "@angular/common/src/facade/async";
+import {MessageService} from "./message.service";
 
 @Component({
     selector: 'app-message',
@@ -13,10 +14,15 @@ import {EventEmitter} from "@angular/common/src/facade/async";
 
 export class MessageComponent{
     @Input() message: Message;
+    @Output() editClicked = new EventEmitter<string>();
 
-    constructor(){}
+    constructor(private messageService: MessageService){}
 
     onEdit(){
+        this.editClicked.emit('editing');
+    }
 
+    onDelete(){
+        this.messageService.deleteMessage(this.message);
     }
 }
