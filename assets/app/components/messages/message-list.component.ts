@@ -7,7 +7,7 @@ import { Message } from "../../models/message.model";
 @Component({
     selector: 'app-message-list',
     templateUrl: `
-        <div class="col-md-8.col-md-offset-2">
+        <div class="col-md-8 col-md-offset-2">
             <app-message [message]="message"
              *ngFor="let message of messages"
              (editClicked)="message.content = $event"></app-message>
