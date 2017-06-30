@@ -13,11 +13,10 @@ import {EventEmitter} from "@angular/common/src/facade/async";
 
 export class MessageComponent{
     @Input() message: Message;
-    @Output() editClicked = new EventEmitter<string>();
 
     constructor(){}
 
     onEdit(){
-        this.editClicked.emit('event emitted');
+
     }
 }
