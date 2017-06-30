@@ -4,13 +4,14 @@
 import {Message} from "../../models/message.model";
 
 export class MessageService{
-    private messages: Message[];
+    private messages: Message[] = [];
 
     addMessage(message: Message): void{
         this.messages.push(message);
+        console.log(this.messages);
     }
 
-    getMessage(): Message[]{
+    getMessages(): Message[]{
         return this.messages;
     }
 

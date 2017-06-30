@@ -2,17 +2,20 @@
  * Created by KeilCarpenter on 30/06/2017.
  */
 import { Component, Output } from '@angular/core';
-import {EventEmitter} from "@angular/common/src/facade/async";
+import { MessageService } from './message.service';
+import {Message} from "../../models/message.model";
+
 
 @Component({
     selector: 'app-message-input',
-    templateUrl: './message-input.component.html'
+    templateUrl: './message-input.component.html',
 })
 
 export class MessageInputComponent{
-    @Output() saveClicked = new EventEmitter<string>();
+    constructor(private messageService: MessageService){}
 
     onSave(value: string){
-        console.log(value);
+        const message = new Message(value, 'Keil');
+        this.messageService.addMessage(message);
     }
 }
