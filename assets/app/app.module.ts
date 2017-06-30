@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule} from '@angular/forms';
+import { FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { RouterModule } from '@angular/router';
 
 import { AppComponent } from "./components/app/app.component";
@@ -33,6 +33,7 @@ import {SignupComponent} from "./components/auth/signup.component";
     imports: [BrowserModule,
                 FormsModule,
                 RouterModule,
+                ReactiveFormsModule,
                 routing],
     providers: [MessageService],
     bootstrap: [AppComponent]
