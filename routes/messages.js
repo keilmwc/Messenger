@@ -12,12 +12,12 @@ router.post('/', function(req, res, next){
     });
     message.save(function(error, result){
         if(error){
-            return result.status(500).json({
+            return res.status(500).json({
                 title: 'Oops! An error occurred',
                 error: error
             });
         }
-        result.status(201).json({
+        res.status(201).json({
             message: 'Message Saved',
             object: result
         })

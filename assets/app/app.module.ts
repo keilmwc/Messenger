@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { RouterModule } from '@angular/router';
+import { HttpModule } from '@angular/Http';
 
 import { AppComponent } from "./components/app/app.component";
 import { MessageComponent } from "./components/messages/message.component";
@@ -33,6 +34,7 @@ import {SignupComponent} from "./components/auth/signup.component";
     imports: [BrowserModule,
                 FormsModule,
                 RouterModule,
+                HttpModule,
                 ReactiveFormsModule,
                 routing],
     providers: [MessageService],
