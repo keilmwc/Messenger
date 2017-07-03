@@ -3,13 +3,15 @@
  */
 import { Message } from "../../models/message.model";
 import { Http, Response, Headers } from '@angular/Http';
-import {Injectable} from "@angular/core";
+import {EventEmitter, Injectable, Output} from "@angular/core";
 import 'rxjs/Rx';
 import {Observable} from "rxjs/Observable";
 
 @Injectable()
 export class MessageService{
     private messages: Message[] = [];
+    editMessageClicked = new EventEmitter<Message>();
+
     constructor(private http: Http){}
 
     addMessage(message: Message){
@@ -19,7 +21,6 @@ export class MessageService{
         return this.http.post('http://localhost:3000/message', body, {headers: headers})
             .map((response: Response) => response.json())
             .catch((error: Response) => Observable.throw(error.json()))
-
     }
 
     getMessages() {
@@ -34,6 +35,10 @@ export class MessageService{
                 return transformedMessages;
             })
             .catch((error: Response) => Observable.throw(error.json()))
+    }
+
+    editMessage(message: Message){
+        this.editMessageClicked.emit(message);
     }
 
     deleteMessage(message: Message): void{

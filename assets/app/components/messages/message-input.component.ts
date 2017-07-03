@@ -13,6 +13,7 @@ import { Validators, FormGroup, FormControl } from "@angular/forms";
 
 export class MessageInputComponent implements OnInit{
     myForm: FormGroup;
+    message: Message;
     constructor(private messageService: MessageService){}
 
     onSubmit(){
@@ -29,5 +30,9 @@ export class MessageInputComponent implements OnInit{
         this.myForm = new FormGroup({
             content: new FormControl(null, Validators.required)
         });
+
+        this.messageService.editMessageClicked.subscribe(
+            (message: Message) => this.message = message
+        );
     }
 }
