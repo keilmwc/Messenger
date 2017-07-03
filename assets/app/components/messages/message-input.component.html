@@ -9,6 +9,7 @@
                     [ngModel]="message?.content"
                     formControlName="content">
         </div>
+        <button type="button" class="btn btn-danger" (click)="onClear()">Clear</button>
         <button type="submit" class="btn btn-primary" [disabled]="!myForm.valid">Save</button>
     </form>
 </div>

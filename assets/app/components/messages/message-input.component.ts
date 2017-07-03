@@ -22,10 +22,12 @@ export class MessageInputComponent implements OnInit{
             data => console.log(data),
             error => console.error(error)
         );
-
         this.myForm.reset();
     }
 
+    onClear(){
+        this.myForm.reset();
+    }
     ngOnInit(){
         this.myForm = new FormGroup({
             content: new FormControl(null, Validators.required)
