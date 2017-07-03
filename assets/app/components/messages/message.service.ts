@@ -37,6 +37,10 @@ export class MessageService{
             .catch((error: Response) => Observable.throw(error.json()))
     }
 
+    updateMessage(message: Message){
+
+    }
+
     editMessage(message: Message){
         this.editMessageClicked.emit(message);
     }
