@@ -19,6 +19,7 @@ export class MessageInputComponent implements OnInit{
     onSubmit(){
         if(this.message){
             this.message.content = this.myForm.value.content;
+            this.messageService.updateMessage(this.message).subscribe(result => console.log(result));
             this.message = null;
         }else{
             const message = new Message(this.myForm.value.content, 'Kedddddil');
