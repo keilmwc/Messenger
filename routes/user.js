@@ -5,6 +5,7 @@ var express = require('express');
 var router = express.Router();
 var bcrypt = require('bcryptjs');
 var User = require('../models/user');
+var jwt = require('jsonwebtoken');
 
 router.post('/', function (req, res, next) {
     var user = new User({
@@ -24,6 +25,32 @@ router.post('/', function (req, res, next) {
             message: 'User Created',
             object: result
         })
+    });
+});
+
+router.post('/signin', function(req, res, error){
+    User.findOne({email: req.body.email}, function(error, user){
+        if(error){
+            return res.status(500).json({
+                title: 'Oops! An error occurred!',
+                error: error
+            })
+        }
+
+        // Check user credentials
+        if(!user || bcrypt.compareSync(req.body.password, user.password)){
+            res.stat(401).json({
+                Title: 'Invalid login',
+                error: {Message: 'Invalid login credentials'}
+            })
+        }else{
+            jwt.sign({user: user}, 'secret', {expiresIn: 7200});
+            res.status(200).json({
+                message: 'Successfully logged in!',
+                token: token,
+                userId: user._id
+            })
+        }
     });
 });
 
