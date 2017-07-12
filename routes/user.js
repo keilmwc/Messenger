@@ -13,7 +13,7 @@ router.post('/', function (req, res, next) {
         lastName: req.body.lastName,
         password: bcrypt.hashSync(req.body.password, 10), // Encrypt password
         email: req.body.email
-    })
+    });
     user.save(function(error, result){
         if(error){
             return res.status(500).json({
@@ -31,21 +31,21 @@ router.post('/', function (req, res, next) {
 router.post('/signin', function(req, res, error){
     User.findOne({email: req.body.email}, function(error, user){
         if(error){
-            return res.status(500).json({
+            return res.status(401).json({
                 title: 'Oops! An error occurred!',
                 error: error
             })
         }
 
         // Check user credentials
-        if(!user || bcrypt.compareSync(req.body.password, user.password)){
-            res.stat(401).json({
+        if(!user || !bcrypt.compareSync(req.body.password, user.password)){
+            return res.status(401).json({
                 Title: 'Invalid login',
                 error: {Message: 'Invalid login credentials'}
             })
         }else{
-            jwt.sign({user: user}, 'secret', {expiresIn: 7200});
-            res.status(200).json({
+            var token = jwt.sign({user: user}, 'secret', {expiresIn: 7200});
+            return res.status(200).json({
                 message: 'Successfully logged in!',
                 token: token,
                 userId: user._id
