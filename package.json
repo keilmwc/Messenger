@@ -19,6 +19,7 @@
     "@angular/platform-server": "4.2.2",
     "@angular/router": "4.2.2",
     "@angular/upgrade": "4.2.2",
+    "bcryptjs": "^2.4.3",
     "body-parser": "~1.17.2",
     "cookie-parser": "~1.4.3",
     "core-js": "^2.4.1",
