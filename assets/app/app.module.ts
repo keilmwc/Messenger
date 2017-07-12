@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { RouterModule } from '@angular/router';
-import { HttpModule } from '@angular/Http';
+import { HttpModule } from '@angular/http';
 
 import { AppComponent } from "./components/app/app.component";
 import { MessageComponent } from "./components/messages/message.component";
@@ -16,6 +16,7 @@ import {HeaderComponent} from "./components/app/header.component";
 import {LogoutComponent} from "./components/auth/logout.component";
 import {SigninComponent} from "./components/auth/signin.component";
 import {SignupComponent} from "./components/auth/signup.component";
+import {AuthenticationService} from "./components/auth/authentication.service";
 
 @NgModule({
     declarations: [
@@ -37,7 +38,8 @@ import {SignupComponent} from "./components/auth/signup.component";
                 HttpModule,
                 ReactiveFormsModule,
                 routing],
-    providers: [MessageService],
+    providers: [MessageService,
+                AuthenticationService],
     bootstrap: [AppComponent]
 
 })
