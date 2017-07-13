@@ -30,6 +30,10 @@ export class SignupComponent implements OnInit {
         this.myForm.reset();
     }
 
+    isLoggedIn(){
+        return localStorage.getItem('token');
+    }
+
     ngOnInit(){
         this.myForm = new FormGroup({
             firstName: new FormControl(null, Validators.required),

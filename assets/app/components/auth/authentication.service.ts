@@ -34,4 +34,9 @@ export class AuthenticationService{
         // Delete token and userId
         localStorage.clear();
     }
+
+    isLoggedIn(){
+        // Check if token exists
+        return localStorage.getItem('token') !== null
+    }
 }
