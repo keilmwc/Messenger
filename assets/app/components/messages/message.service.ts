@@ -25,7 +25,7 @@ export class MessageService{
             .map(
                 (response: Response) => {
                     const result = response.json();
-                    const message = new Message(result.object.content, 'Dummy', result.object._id, null);
+                    const message = new Message(result.object.content, result.object.user.firstName, result.object._id, result.object.user._id);
                     this.messages.push(message);
                     return message;
                 }
@@ -39,7 +39,7 @@ export class MessageService{
                 const messages = response.json().object;
                 let transformedMessages: Message[] = [];
                 for (let message of messages) {
-                    transformedMessages.push(new Message(message.content, 'Dummy Message', message._id, null));
+                    transformedMessages.push(new Message(message.content, message.user.firstName, message._id, message.user._id));
                 }
                 this.messages = transformedMessages;
                 return transformedMessages;

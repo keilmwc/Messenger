@@ -23,4 +23,9 @@ export class MessageComponent{
     onDelete(){
         this.messageService.deleteMessage(this.message).subscribe(result => console.log(result));
     }
+
+    belongsToUser(){
+        // Only for user experience, validation is done on server
+        return localStorage.getItem('userId') == this.message.userId;
+    }
 }

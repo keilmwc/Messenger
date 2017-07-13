@@ -31,7 +31,7 @@ router.post('/', function (req, res, next) {
 router.post('/signin', function(req, res, error){
     User.findOne({email: req.body.email}, function(error, user){
         if(error){
-            return res.status(401).json({
+            return res.status(500).json({
                 title: 'Oops! An error occurred!',
                 error: error
             })
@@ -43,14 +43,14 @@ router.post('/signin', function(req, res, error){
                 Title: 'Invalid login',
                 error: {Message: 'Invalid login credentials'}
             })
-        }else{
-            var token = jwt.sign({user: user}, 'secret', {expiresIn: 7200});
-            return res.status(200).json({
-                message: 'Successfully logged in!',
-                token: token,
-                userId: user._id
-            })
         }
+
+        var token = jwt.sign({user: user}, 'secret', {expiresIn: 7200});
+        return res.status(200).json({
+            message: 'Successfully logged in!',
+            token: token,
+            userId: user._id
+        })
     });
 });
 
