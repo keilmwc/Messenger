@@ -29,4 +29,9 @@ export class AuthenticationService{
             .map((response: Response) => response.json())
             .catch((error: Response) => Observable.throw(error.json()));
     }
+
+    logout(){
+        // Delete token and userId
+        localStorage.clear();
+    }
 }
