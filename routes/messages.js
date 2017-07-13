@@ -3,6 +3,7 @@
  */
 var express = require('express');
 var router = express.Router();
+var jwt = require('jsonwebtoken');
 
 var Message = require('../models/message');
 
@@ -20,6 +21,19 @@ router.get('/', function(req, res, next){
                object: messages
            })
         });
+});
+
+// Make sure only authenticaed (loggedin) users can access routes
+router.use('/', function(req, res, error){
+    jwt.verify(req.query.token, 'secret', function(error, decoded){
+        if(error){
+            return res.status(401).json({
+                title: 'Not Authenticated!',
+                error: error
+            })
+        }
+        next();
+    })
 });
 
 router.post('/', function(req, res, next){
