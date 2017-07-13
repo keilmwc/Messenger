@@ -24,7 +24,7 @@ router.get('/', function(req, res, next){
 });
 
 // Make sure only authenticaed (loggedin) users can access routes
-router.use('/', function(req, res, error){
+router.use('/', function(req, res, next){
     jwt.verify(req.query.token, 'secret', function(error, decoded){
         if(error){
             return res.status(401).json({

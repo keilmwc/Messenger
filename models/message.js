@@ -14,7 +14,7 @@ var schema = new Schema({
 // Remove deleted message from messages array on user object so it does not persist
 schema.post('remove', function(message){
     User.findById(message.user, function(error, user){
-        user.message.pull(message);// remove message from array
+        user.messages.pull(message);// remove message from array
         user.save();
     })
 });
