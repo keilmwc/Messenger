@@ -4,7 +4,7 @@
 var express = require('express');
 var router = express.Router();
 var jwt = require('jsonwebtoken');
-
+var User = require('../models/user');
 var Message = require('../models/message');
 
 router.get('/', function(req, res, next){
@@ -37,21 +37,37 @@ router.use('/', function(req, res, error){
 });
 
 router.post('/', function(req, res, next){
-    var message = new Message({
-        content: req.body.content
-    });
-    message.save(function(error, result){
+    var decoded = jwt.decode(req.query.token);// Decrypt token contents
+
+    // Find user by ID taken from with the token
+    User.findById(decoded.user._id, function(error, user){
         if(error){
             return res.status(500).json({
-                title: 'Oops! An error occurred',
+                title: "User not found!",
                 error: error
-            });
+            })
         }
-        res.status(200).json({
-            message: 'Message Saved',
-            object: result
-        })
-    });
+
+        // Create a new message and assign to user account
+        var message = new Message({
+            content: req.body.content,
+            user: user
+        });
+        message.save(function(error, result){
+            if(error){
+                return res.status(500).json({
+                    title: 'Oops! An error occurred',
+                    error: error
+                });
+            }
+            user.messages.push(result);// Push message to array on user object
+            user.save();// Save updated user in this case his/her message
+            res.status(200).json({
+                message: 'Message Saved',
+                object: result
+            })
+        });
+    })
 });
 
 router.patch('/:id', function(req, res, next){
