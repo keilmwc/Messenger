@@ -5,6 +5,7 @@ import { Component, OnInit } from '@angular/core';
 import { MessageService } from './message.service';
 import {Message} from "../../models/message.model";
 import { Validators, FormGroup, FormControl } from "@angular/forms";
+import {AuthenticationService} from "../auth/authentication.service";
 
 @Component({
     selector: 'app-message-input',
@@ -14,7 +15,8 @@ import { Validators, FormGroup, FormControl } from "@angular/forms";
 export class MessageInputComponent implements OnInit{
     myForm: FormGroup;
     message: Message;
-    constructor(private messageService: MessageService){}
+    isLoggedIn: boolean;
+    constructor(private messageService: MessageService, private authorizationService: AuthenticationService){}
 
     onSubmit(){
         if(this.message){
@@ -40,6 +42,8 @@ export class MessageInputComponent implements OnInit{
             content: new FormControl(null, Validators.required)
         });
 
+        this.isLoggedIn = this.authorizationService.isLoggedIn();
+        console.log(this.isLoggedIn);
         this.messageService.editMessageClicked.subscribe(
             (message: Message) => this.message = message
         );

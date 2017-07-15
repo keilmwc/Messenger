@@ -32,6 +32,9 @@
                     class="form-control"
                     formControlName="password">
         </div>
-        <button class="btn btn-primary" type="submit" [disabled]="!myForm.valid">Submit</button>
+        <div [hidden]="signUpSuccessfull">
+            <button class="btn btn-primary" type="submit" [disabled]="!myForm.valid">Submit</button>
+        </div>
+        <div class="alert alert-success" role="alert" *ngIf="signUpSuccessfull">Thanks! You can now login!</div>
     </form>
 </div>

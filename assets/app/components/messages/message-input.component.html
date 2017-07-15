@@ -1,15 +1,18 @@
 <div class="col-md-8 col-md-offset-2">
-    <form [formGroup]="myForm" (ngSubmit)="onSubmit()">
-        <div class="form-group">
-            <label for="content">Content</label>
-            <input
-                    type="text"
-                    id="content"
-                    class="form-control"
-                    [ngModel]="message?.content"
-                    formControlName="content">
-        </div>
-        <button type="button" class="btn btn-danger" (click)="onClear()">Clear</button>
-        <button type="submit" class="btn btn-primary" [disabled]="!myForm.valid">Save</button>
+    <form [formGroup]="myForm" (ngSubmit)="onSubmit()" >
+        <div class="alert alert-danger" role="alert" *ngIf="!isLoggedIn">Oopa! You need to sign in to use this service!</div>
+        <fieldset [disabled]="!isLoggedIn">
+            <div class="form-group">
+                <label for="content">Content</label>
+                <input
+                        type="text"
+                        id="content"
+                        class="form-control"
+                        [ngModel]="message?.content"
+                        formControlName="content">
+            </div>
+            <button type="button" class="btn btn-danger" (click)="onClear()">Clear</button>
+            <button type="submit" class="btn btn-primary" [disabled]="!myForm.valid">Save</button>
+        </fieldset>
     </form>
 </div>

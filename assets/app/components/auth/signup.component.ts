@@ -12,6 +12,7 @@ import { User } from "../../models/user.model";
 })
 export class SignupComponent implements OnInit {
     myForm: FormGroup;
+    signUpSuccessfull: boolean;
 
     constructor(private authenticationService: AuthenticationService) {
     }
@@ -24,7 +25,7 @@ export class SignupComponent implements OnInit {
             this.myForm.value.lastName
         );
         this.authenticationService.signUp(user).subscribe(
-            data => console.log(data),
+            data => this.signUpSuccessfull = true,
             error => console.log(error)
         );
         this.myForm.reset();
