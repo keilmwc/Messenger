@@ -38,12 +38,20 @@ router.post('/signin', function(req, res, error){
         }
 
         // Check user credentials
-        if(!user || !bcrypt.compareSync(req.body.password, user.password)){
+        if(!user) {
             return res.status(401).json({
-                Title: 'Invalid login',
-                error: {Message: 'Invalid login credentials'}
-            })
+                title: 'Invalid login',
+                error: {message: 'Invalid credentials'}
+            });
         }
+
+        if(!bcrypt.compareSync(req.body.password, user.password)){
+            return res.status(401).json({
+                title: 'Invalid login',
+                error: {message: 'Invalid credentials'}
+            });
+        }
+
 
         var token = jwt.sign({user: user}, 'secret', {expiresIn: 7200});
         return res.status(200).json({

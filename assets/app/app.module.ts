@@ -17,10 +17,13 @@ import {LogoutComponent} from "./components/auth/logout.component";
 import {SigninComponent} from "./components/auth/signin.component";
 import {SignupComponent} from "./components/auth/signup.component";
 import {AuthenticationService} from "./components/auth/authentication.service";
+import {ErrorComponent} from "./components/errors/error.component";
+import {ErrorService} from "./components/errors/error.service";
 
 @NgModule({
     declarations: [
         AppComponent,
+        ErrorComponent,
         MessageComponent,
         MessagesComponent,
         MessageListComponent,
@@ -39,6 +42,7 @@ import {AuthenticationService} from "./components/auth/authentication.service";
                 ReactiveFormsModule,
                 routing],
     providers: [MessageService,
+                ErrorService,
                 AuthenticationService],
     bootstrap: [AppComponent]
 
