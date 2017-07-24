@@ -19,15 +19,12 @@ import {SignupComponent} from "./components/auth/signup.component";
 import {AuthenticationService} from "./components/auth/authentication.service";
 import {ErrorComponent} from "./components/errors/error.component";
 import {ErrorService} from "./components/errors/error.service";
+import {MessageModule} from "./components/messages/messages.module";
 
 @NgModule({
     declarations: [
         AppComponent,
         ErrorComponent,
-        MessageComponent,
-        MessagesComponent,
-        MessageListComponent,
-        MessageInputComponent,
         AuthenticationComponent,
         HeaderComponent,
         LogoutComponent,
@@ -35,16 +32,21 @@ import {ErrorService} from "./components/errors/error.service";
         SignupComponent
 
     ],
-    imports: [BrowserModule,
-                FormsModule,
-                RouterModule,
-                HttpModule,
-                ReactiveFormsModule,
-                routing],
-    providers: [MessageService,
-                ErrorService,
-                AuthenticationService],
-    bootstrap: [AppComponent]
+    imports: [
+        BrowserModule,
+        MessageModule,
+        RouterModule,
+        ReactiveFormsModule,
+        HttpModule,
+        routing
+    ],
+    providers: [
+        ErrorService,
+        MessageService,
+        AuthenticationService],
+    bootstrap: [
+        AppComponent
+    ]
 
 })
 export class AppModule {
