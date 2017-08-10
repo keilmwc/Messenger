@@ -1,3 +1,4 @@
+/*
 import {NgModule} from "@angular/core";
 import {MessageService} from "./message.service";
 import {MessageComponent} from "./message.component";
@@ -12,7 +13,8 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
         MessageComponent,
         MessagesComponent,
         MessageListComponent,
-        MessageInputComponent],
+        MessageInputComponent
+    ],
     imports: [
         CommonModule,
         ReactiveFormsModule,
@@ -23,4 +25,4 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
     ]
 })
 export class MessageModule {
-}
+}*/

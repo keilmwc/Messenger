@@ -10,8 +10,15 @@ import {HeaderComponent} from "./components/app/header.component";
 import {AuthenticationService} from "./components/auth/authentication.service";
 import {ErrorComponent} from "./components/errors/error.component";
 import {ErrorService} from "./components/errors/error.service";
-import {MessageModule} from "./components/messages/messages.module";
 import {ReactiveFormsModule} from "@angular/forms";
+import {MessageComponent} from "./components/messages/message.component";
+import {MessagesComponent} from "./components/messages/messages.component";
+import {MessageListComponent} from "./components/messages/message-list.component";
+import {MessageInputComponent} from "./components/messages/message-input.component";
+import {SigninComponent} from "./components/auth/signin.component";
+import {SignupComponent} from "./components/auth/signup.component";
+import {LogoutComponent} from "./components/auth/logout.component";
+import {CommonModule} from "@angular/common";
 
 @NgModule({
     declarations: [
@@ -19,18 +26,29 @@ import {ReactiveFormsModule} from "@angular/forms";
         ErrorComponent,
         AuthenticationComponent,
         HeaderComponent,
+        MessageComponent,
+        MessagesComponent,
+        MessageListComponent,
+        MessageInputComponent,
+        SigninComponent,
+        SignupComponent,
+        LogoutComponent
     ],
     imports: [
         BrowserModule,
-        MessageModule,
         RouterModule,
         HttpModule,
+        CommonModule,
+        ReactiveFormsModule,
+
+
         routing
     ],
     providers: [
         ErrorService,
         MessageService,
         AuthenticationService
+
     ],
     bootstrap: [
         AppComponent

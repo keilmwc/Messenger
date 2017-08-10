@@ -2,8 +2,9 @@
  * Created by KeilCarpenter on 21-Jul-17.
  */
 
-import {EventEmitter} from "@angular/common/src/facade/async";
+
 import {Error} from './error.model';
+import {EventEmitter} from "@angular/core";
 
 export class ErrorService{
     errorOccurred = new EventEmitter<Error>();

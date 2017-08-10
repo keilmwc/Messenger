@@ -1,3 +1,4 @@
+/*
 import {NgModule} from "@angular/core";
 import {SigninComponent} from "./signin.component";
 import {SignupComponent} from "./signup.component";
@@ -20,4 +21,4 @@ import {authenticationRouting} from "./authentication.routing";
 })
 export class AuthenticationModule{
 
-}
+}*/
