@@ -1,5 +1,5 @@
 var webpack = require('webpack');
-
+var path = require('path');
 module.exports = {
     entry: {
         'app': './assets/app/main.ts'
@@ -32,9 +32,8 @@ module.exports = {
 
     plugins: [
         new webpack.ContextReplacementPlugin(
-            // The (\\|\/) piece accounts for path separators in *nix and Windows
-            /angular(\\|\/)core(\\|\/)(esm(\\|\/)src|src)(\\|\/)linker/,
-            './src' // location of your src
+            /angular(\\|\/)core(\\|\/)@angular/,
+             path.resolve(__dirname, '../src')
         )
     ]
 };
